@@ -50,7 +50,9 @@ func (sf *SearchEntry) Init() {
 func (s *SearchEntry) TypedKey(e *fyne.KeyEvent) {
 	if e.Name == fyne.KeyEscape {
 		s.SetText("")
-		fyne.CurrentApp().Driver().CanvasForObject(s).Unfocus()
+		if c := fyne.CurrentApp().Driver().CanvasForObject(s); c != nil {
+			c.Unfocus()
+		}
 		return
 	}
 	s.Entry.TypedKey(e)

@@ -152,7 +152,7 @@ func (b *BrowsingPane) doSetPage(p Page) bool {
 	}
 	// TODO: reset focus only if something inside the previous page had focus
 	if c := fyne.CurrentApp().Driver().CanvasForObject(b); c != nil {
-		c.Focus(nil)
+		c.Unfocus()
 	}
 	b.curPage = p
 	if np, ok := p.(CanShowNowPlaying); ok {

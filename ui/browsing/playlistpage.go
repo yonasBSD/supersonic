@@ -392,7 +392,9 @@ func NewPlaylistPageHeader(page *PlaylistPage) *PlaylistPageHeader {
 		}
 		buttonRow.Objects[3] = searchEntry
 		searchEntry.SetMinWidth(minW)
-		fyne.CurrentApp().Driver().CanvasForObject(a).Focus(searchEntry)
+		if c := fyne.CurrentApp().Driver().CanvasForObject(a); c != nil {
+			c.Focus(searchEntry)
+		}
 		fyne.NewAnimation(myTheme.AnimationDurationShort, func(f float32) {
 			w := (200-minW)*f + minW
 			searchEntry.SetMinWidth(w)

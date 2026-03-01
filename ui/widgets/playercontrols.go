@@ -50,7 +50,9 @@ func (t *TrackPosSlider) Tapped(e *fyne.PointEvent) {
 	t.Slider.Tapped(e)
 
 	// don't keep focus after being tapped
-	fyne.CurrentApp().Driver().CanvasForObject(t).Focus(nil)
+	if c := fyne.CurrentApp().Driver().CanvasForObject(t); c != nil {
+		c.Unfocus()
+	}
 }
 
 // override to increase the distance moved by keyboard control

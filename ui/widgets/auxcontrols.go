@@ -124,7 +124,9 @@ func NewVolumeSlider(width float32) *volumeSlider {
 
 func (v *volumeSlider) Tapped(e *fyne.PointEvent) {
 	v.Slider.Tapped(e)
-	fyne.CurrentApp().Driver().CanvasForObject(v).Unfocus()
+	if c := fyne.CurrentApp().Driver().CanvasForObject(v); c != nil {
+		c.Unfocus()
+	}
 }
 
 func (v *volumeSlider) MinSize() fyne.Size {
